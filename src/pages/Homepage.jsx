@@ -17,8 +17,8 @@ const Homepage = () => {
           className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute bottom-0 right-0 z-0"
         ></div>
         <div className="flex flex-col justify-center items-center z-10">
-          <div className="flex flex-row justify-between items-center w-full z-10 p-8 md:px-16 mt-16">
-            <div className="flex flex-col justify-between items-center w-full px-7 mx-auto">
+          <div className="flex flex-row justify-revert items-center w-full z-10 p-8 mt-16">
+            <div className="flex flex-col justify-between items-center w-1/2">
               <div
                 style={{ width: "460px", height: "209px", flexShrink: "0" }}
                 className="font-outfit font-semibold text-5xl leading-tight text-Primary"
@@ -37,7 +37,7 @@ const Homepage = () => {
             </div>
             <div
               style={{ width: "650px", height: "488px", flexShrink: "0" }}
-              className="flex-shrink-0"
+              className="flex-shrink-0 w-1/2"
             >
               <img src={hero} alt="Hero" className="h-full w-full" />
             </div>
