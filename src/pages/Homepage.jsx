@@ -1,6 +1,6 @@
 import react from "react";
 import Navbar from "../components/Navbar";
-import { hero } from "../../public/assets";
+import { hero } from "../assets";
 import { PiSealCheckFill } from "react-icons/pi";
 const Homepage = () => {
   return (
@@ -62,6 +62,6 @@ const Homepage = () => {
       </div>
     </>
   );
-}
+};
 
 export default Homepage;
