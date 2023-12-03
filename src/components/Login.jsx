@@ -4,11 +4,18 @@ import ellipse from "../assets/ellipse1.png";
 
 const Login = () => {
 
-
   return (
 
         <Fragment>
-          <div class="logcontainer">
+          <div className="logcontainer bg-Background min-h-screen relative overflow-hidden">
+            <div
+            style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
+            className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute top-0 left-0 z-0"
+            ></div>
+            <div
+            style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
+            className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute bottom-0 right-0 z-0"
+            ></div>
             <div class="logCard">
               <div class="logInnerBox" id="card">
                 <div class="logFront">

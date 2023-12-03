@@ -1,11 +1,13 @@
-
+import Login from "./components/Login";
+import Homepage from "./pages/Homepage";
+import SignUp from "./components/SignUp";
 
 function App() {
 
   return (
     <>
-      <div className="flex flex-auto">
-        Hello World!
+      <div>
+        <Login />
       </div>
     </>
   )
