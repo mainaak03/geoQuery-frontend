@@ -1,7 +1,7 @@
 import react from "react";
 import Navbar from "../components/Navbar";
 import { hero } from "../../public/assets";
-import { MdCheckCircle } from "react-icons/md";
+import { PiSealCheckFill } from "react-icons/pi";
 function Homepage() {
   return (
     <>
@@ -17,7 +17,7 @@ function Homepage() {
         ></div>
         <div className="flex flex-col justify-center items-center z-10">
           <div className="flex flex-row justify-between items-center w-full z-10 p-8 md:px-16 mt-16">
-            <div className="flex flex-col justify-normal px-7 mx-auto">
+            <div className="flex flex-col justify-between items-center w-full px-7 mx-auto">
               <div
                 style={{ width: "460px", height: "209px", flexShrink: "0" }}
                 className="font-outfit font-semibold text-5xl leading-tight text-Primary"
@@ -46,15 +46,15 @@ function Homepage() {
             className="flex justify-between items-center w-3/5 px-12 py-6 rounded-lg bg-white bg-opacity-5"
           >
             <div className="flex items-center text-xl space-x-4 text-Primary">
-              <MdCheckCircle />
+              <PiSealCheckFill />
               <span>Fast Response</span>
             </div>
             <div className="flex items-center text-xl space-x-4 text-Primary">
-              <MdCheckCircle />
+              <PiSealCheckFill />
               <span>Semantic Search</span>
             </div>
             <div className="flex items-center text-xl space-x-4 text-Primary">
-              <MdCheckCircle />
+              <PiSealCheckFill />
               <span>Precise Locations</span>
             </div>
           </div>
