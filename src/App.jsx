@@ -1,11 +1,8 @@
-import './App.css'
-
+import Homepage from './pages/Homepage.jsx'
 function App() {
   return (
     <>
-      <div className="flex flex-auto">
-        Hello World!
-      </div>
+      <Homepage/>
     </>
   )
 }
