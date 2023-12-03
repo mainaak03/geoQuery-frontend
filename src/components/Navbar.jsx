@@ -1,5 +1,6 @@
-import React from "react";
 import { ellipse } from "../assets";
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
   return (
     <>
@@ -8,7 +9,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-6">
             <img src={ellipse} alt="ellipse" className="w-10 h-10" />
             <div className="text-Primary text-3xl md:text-4xl font-outfit font-bold">
-              GeoQuerry
+              GeoQuery
             </div>
           </div>
           <ul className="flex flex-col md:flex-row md:space-x-16 space-y-4 md:space-y-0 space-x-16 justify-center items-center mt-2">
@@ -30,7 +31,9 @@ const Navbar = () => {
             </li>
             <li>
               <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
-                <div className="text-center">Get Started</div>
+                <div className="text-center">
+                  <Link to="/login">Get Started</Link>
+                </div>
               </button>
             </li>
           </ul>
