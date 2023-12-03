@@ -1,6 +1,6 @@
 import React from "react";
 import {ellipse} from "../../public/assets";
-function Navbar (){
+const Navbar = () => {
     return (
       <>
         <nav className="p-4 fixed top-0 left-0 w-full z-10">

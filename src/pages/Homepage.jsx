@@ -2,7 +2,7 @@ import react from "react";
 import Navbar from "../components/Navbar";
 import { hero } from "../../public/assets";
 import { PiSealCheckFill } from "react-icons/pi";
-function Homepage() {
+const Homepage = () => {
   return (
     <>
       <div className="bg-Background min-h-screen relative overflow-hidden">
