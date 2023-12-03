@@ -14,7 +14,7 @@ export default {
         '155': "155px",
       },
       fontFamily: {
-        outfit: ["Outfit"],
+        outfit: ["Outfit", "sans"],
       },
     },
   },

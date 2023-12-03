@@ -42,8 +42,8 @@ function Homepage() {
             </div>
           </div>
           <div
-            style={{ width: "935px", height: "72px" }}
-            className="flex justify-between items-center"
+            // style={{ width: "935px", height: "72px" }}
+            className="flex justify-between items-center w-3/5 px-12 py-6 rounded-lg bg-white bg-opacity-5"
           >
             <div className="flex items-center text-xl space-x-4 text-Primary">
               <MdCheckCircle />

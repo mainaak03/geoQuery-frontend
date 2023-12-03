@@ -1,4 +1,3 @@
-
 import React from "react";
 import {ellipse} from "../../public/assets";
 function Navbar (){
@@ -9,14 +8,14 @@ function Navbar (){
             <div className="flex items-center space-x-6">
               <img src={ellipse} alt="ellipse" className="w-10 h-10" />
               <div className="text-Primary text-3xl font-outfit font-bold">
-                geoQuerry
+                geoQuery
               </div>
             </div>
             <ul className="flex space-x-16 justify-center items-center">
               <li>
                 <a
                   href="#"
-                  className="text-Primary hover:text-gray-300 text-2xl font-outfit"
+                  className="text-Primary hover:text-gray-300 text-xl font-outfit"
                 >
                   How it Works
                 </a>
@@ -24,13 +23,13 @@ function Navbar (){
               <li>
                 <a
                   href="#"
-                  className="text-Primary hover:text-gray-300 text-2xl font-outfit"
+                  className="text-Primary hover:text-gray-300 text-xl font-outfit"
                 >
                   About Us
                 </a>
               </li>
               <li>
-                <button className="bg-onPrimary hover:bg-onPrimary-700 text-Primary text-2xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
+                <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
                   <div className="text-center">Get Started</div>
                 </button>
               </li>
