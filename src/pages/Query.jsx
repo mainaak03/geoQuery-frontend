@@ -1,6 +1,6 @@
 import { ellipse } from "../assets";
 import { Link } from "react-router-dom";
-
+import {MdSend} from "react-icons/md";
 const queries = [
     "How much rainfall in the Amazon ..?",
     "How much rainfall in the Amazon ..?",
@@ -71,9 +71,7 @@ const query = () => {
               <div className="mt-8 px-4 text-xl font-normal pb-2">
                 Recent Queries
               </div>
-              <div
-                className="flex flex-col flex-grow justify-center items-center space-y-4 overflow-auto pt-4"
-              >
+              <div className="flex flex-col flex-grow justify-center items-center space-y-4 overflow-auto pt-4">
                 {queries.map((query, index) => (
                   <div className="flex-shrink-0 w-11/12 h-max font-normal">
                     <div
@@ -95,8 +93,21 @@ const query = () => {
         </div>
         <div className="flex flex-col w-3/5 h-full shadow-[0_0_40px_20px_rgba(0,0,0,0.26)] rounded-[20px] text-Primary font-outfit">
           <div className="relative w-full h-full shadow-[0px_0px_40px_-1px_rgba(54,32,255,0.33)] rounded-[15px] border border-onPrimary border-opacity-20">
-            <div className="w-full h-full box-border rounded-[30px] pt-[30px] pb-5 px-[5px]">
-              {/* content of second box */}
+            <div className="flex flex-col justify-normal items-start px-24 w-full h-full box-border rounded-[30px] pt-[30px] pb-5">
+              <div className="text-xl text-center font-light mt-6">
+                Enter your query:
+              </div>
+              <div className="relative w-full mt-4">
+                <input
+                  className="w-full p-2 rounded-10"
+                  style={{
+                    background: "rgba(217, 217, 217, 0.15)",
+                  }}
+                />
+                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl ">
+                    <MdSend />
+                </button>
+              </div>
             </div>
           </div>
         </div>

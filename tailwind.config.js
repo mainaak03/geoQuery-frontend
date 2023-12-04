@@ -10,6 +10,9 @@ export default {
         Background: "#070B1D",
         'custom-blue': "rgba(54, 32, 255, 0.15)",
       },
+      borderRadius: {
+        '10': '10px',
+      },
       blur: {
         '155': "155px",
       },
