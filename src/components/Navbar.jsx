@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <nav className="p-4 fixed top-0 left-0 w-full z-10">
+      <nav className="p-4 border-b border-onPrimary border-opacity-10 fixed top-0 left-0 w-full z-10" style={{boxShadow:"0px 0px 40px -1px rgba(54, 32, 255, 0.10)"}}>
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:px-8 lg:px-16">
           <div className="flex items-center space-x-6">
             <img src={ellipse} alt="ellipse" className="w-10 h-10" />
@@ -24,7 +24,7 @@ const Navbar = () => {
             <li>
               <a
                 href="#"
-                className="text-Primary hover:text-gray-300 text-xl font-outfit"
+                className="text-Primary hover:text-gray-300 text-2xl font-outfit"
               >
                 About Us
               </a>

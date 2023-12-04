@@ -2,10 +2,11 @@ import react from "react";
 import Navbar from "../components/Navbar";
 import { hero } from "../assets";
 import { PiSealCheckFill } from "react-icons/pi";
+
 const Homepage = () => {
   return (
     <>
-      <div className="bg-Background min-h-screen relative overflow-hidden">
+      <div className="flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
         <Navbar />
         <div
           style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
