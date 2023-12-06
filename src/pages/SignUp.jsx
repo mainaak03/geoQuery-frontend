@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ellipse } from "../assets";
+import ellipse from "../assets/images/ellipse.svg";
 
 const Signup = () => {
   return (

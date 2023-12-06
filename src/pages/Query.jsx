@@ -1,14 +1,14 @@
-import { ellipse } from "../assets";
+import ellipse from "../assets/images/ellipse.svg";
 import { Link } from "react-router-dom";
-import {MdSend} from "react-icons/md";
+import { MdSend } from "react-icons/md";
 const queries = [
-    "How much rainfall in the Amazon ..?",
-    "How much rainfall in the Amazon ..?",
-    "How much rainfall in the Amazon ..?",
-    "How much rainfall in the Amazon ..?",
-    "How much rainfall in the Amazon ..?",
-    "How much rainfall in the Amazon ..?"
-]
+  "How much rainfall in the Amazon ..?",
+  "How much rainfall in the Amazon ..?",
+  "How much rainfall in the Amazon ..?",
+  "How much rainfall in the Amazon ..?",
+  "How much rainfall in the Amazon ..?",
+  "How much rainfall in the Amazon ..?",
+];
 const query = () => {
   return (
     <div className="w-full h-screen text-white flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
@@ -73,6 +73,7 @@ const query = () => {
               </div>
               <div className="flex flex-col flex-grow justify-center items-center space-y-4 overflow-auto pt-4">
                 {queries.map((query, index) => (
+                  // eslint-disable-next-line react/jsx-key
                   <div className="flex-shrink-0 w-11/12 h-max font-normal">
                     <div
                       key={index}
@@ -105,7 +106,7 @@ const query = () => {
                   }}
                 />
                 <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl ">
-                    <MdSend />
+                  <MdSend />
                 </button>
               </div>
             </div>

@@ -1,6 +1,6 @@
-import react from "react";
+// import react from "react";
 import Navbar from "../components/Navbar";
-import { hero } from "../assets";
+import hero from "../assets/images/hero1.svg";
 import { PiSealCheckFill } from "react-icons/pi";
 
 const Homepage = () => {
