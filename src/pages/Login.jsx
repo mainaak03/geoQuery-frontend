@@ -1,7 +1,19 @@
 import {ellipse} from "../assets";
 import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {useState} from "react";
+
 
 const Login = () => {
+
+  const dispatch = useDispatch();
+  const [loginUserName, setLoginUserName] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+
+  const loginSubmit = (e) => {
+    e.preventDefault();
+    // here the dispatch code to be added
+  };
 
   return (
         <>
@@ -23,17 +35,27 @@ const Login = () => {
                     <h3 className="text-3xl font-semibold">geoQuery</h3>
                   </div>
                   <div className="text-5xl font-semibold text-center mb-12">Login to your account.</div>
-                  <form >
+                  <form onSubmit={loginSubmit}>
                       <div className="mx-4 p-4 font-light z-10">
                         <label htmlFor="username">Username</label>
-                        <input id="username" type="text" className="block w-full p-3 mt-1 rounded-lg bg-Primary bg-opacity-20" required />
+                        <input id="username" type="text" className="block w-full p-3 mt-1 rounded-lg bg-Primary bg-opacity-20" 
+                          required
+                          value={loginUserName}
+                          onChange={(e) => setLoginUserName(e.target.value)}
+                        />
                       </div>
                       <div className="mx-4 p-4 font-light z-10">
                         <label htmlFor="password">Password</label>
-                        <input id="password" type="password" className="block w-full p-3 mt-1 rounded-lg bg-Primary bg-opacity-20" required />
+                        <input id="password" type="password" className="block w-full p-3 mt-1 rounded-lg bg-Primary bg-opacity-20" 
+                          required
+                          value={loginPassword}
+                          onChange={(e) => setLoginPassword(e.target.value)} 
+                        />
                       </div>
                       <div className="flex p-4 justify-center items-center">
-                        <button className="w-full mx-4 my-4 z-10 bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 rounded-lg font-outfit flex items-center justify-center">
+                        <button className="w-full mx-4 my-4 z-10 bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 rounded-lg font-outfit flex items-center justify-center"
+                          type="submit"
+                        >
                           <div className="text-center px-4">Login</div>
                         </button>
                       </div>
