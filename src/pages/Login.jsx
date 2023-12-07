@@ -1,4 +1,4 @@
-import {ellipse} from "../assets";
+import ellipse from "../assets/images/ellipse.svg";
 import { Link } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
