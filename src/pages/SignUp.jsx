@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import { ellipse } from "../assets";
 import { useState } from "react";
 import {useDispatch} from "react-redux";
 import {register} from "../actions/userAction";
-=======
 import ellipse from "../assets/images/ellipse.svg";
->>>>>>> ba7d20a6cb1b5da5a2c6e997add647aadf4e195c
 
 const Signup = () => {
 
