@@ -1,17 +1,26 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import {useDispatch} from "react-redux";
+import { Link ,useNavigate} from "react-router-dom";
+import { useState ,useEffect} from "react";
+import {useDispatch,useSelector} from "react-redux";
 import {register} from "../actions/userAction";
 import ellipse from "../assets/images/ellipse.svg";
+import Loader from "../components/Loader";
+import {useAlert} from "react-alert";
 
 const Signup = () => {
 
   const dispatch = useDispatch();
+  const alert = useAlert();
+
+  const {loading,error,registerSuccess} = useSelector(
+    (state) => state.user
+  );
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    first_name : "",
-    last_name : "",
-    username : "",
+    firstName : "",
+    lastName : "",
+    userName : "",
     password : "",
   });
 
@@ -22,20 +31,39 @@ const Signup = () => {
   };
 
   const registerSubmit = async (e) => {
-
+    e.preventDefault();
     const userData = {
       first_name : firstName,
       last_name : lastName,
       username: userName,
       password: password,
     };
-    dispatch(register(userData));
+    const result = await dispatch(register(userData));
+    if(result){
+      alert.success("Registered Successfully");
+      navigate("/login");
+    }else{
+      alert.error("Error Occurred");
+    }
   };
+
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+    if(registerSuccess){
+      console.log("Registered Successfully");
+    }
+  }, [loading,registerSuccess,dispatch,navigate,error]);
 
 
   return (
     <>
-      <div className="bg-Background min-h-screen relative overflow-hidden">
+    {loading ? (
+      <Loader />
+    ) : (
+      <>
+        <div className="bg-Background min-h-screen relative overflow-hidden">
         <div
           style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
           className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute top-0 left-0 z-0"
@@ -53,7 +81,8 @@ const Signup = () => {
               </div>
               <div className="mb-12 text-5xl font-semibold">Create a new account.</div>
 
-              <div className="flex flex-col flex-grow">
+              <form onSubmit={registerSubmit}>
+                <div className="flex flex-col flex-grow">
 
                 <div className="flex flex-row z-10">
                   <div className="mx-4 my-2 font-light">
@@ -95,7 +124,7 @@ const Signup = () => {
                   />
                 </div>
                 <button className="mx-4 my-8 z-10 bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 rounded-lg font-outfit flex items-center justify-center"
-                  onClick={registerSubmit}
+                  type="submit"
                 >
                   <div className="text-center px-4">Create Account</div>
                 </button>
@@ -106,9 +135,13 @@ const Signup = () => {
                   </span>
                 </div>
               </div>
+              </form>
             </div>
           </div>
         </div>
+      </>
+    )
+    }
     </>
   )
 }

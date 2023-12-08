@@ -1,13 +1,21 @@
 import ellipse from "../assets/images/ellipse.svg";
-import { Link } from "react-router-dom";
-import {useDispatch} from "react-redux";
-import {useState} from "react";
+import { Link,useNavigate } from "react-router-dom";
+import {useDispatch,useSelector} from "react-redux";
+import {useState,useEffect} from "react";
 import {login} from "../actions/userAction";
+import Loader from "../components/Loader";
+import {useAlert} from "react-alert";
 
 
 const Login = () => {
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const alert = useAlert();
+
+  const {loading,error,isAuthenticated} = useSelector(
+    (state) => state.user
+  );
   
   const [user, setUser] = useState({
     username : "",
@@ -20,19 +28,39 @@ const Login = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   }
 
-  const loginSubmit = (e) => {
+  const loginSubmit = async (e) => {
     e.preventDefault();
-    // here the dispatch code to be added
     const userData = {
-      username: username,
-      password: password,
+      username : username,
+      password : password,
     };
-    dispatch(login(userData));
+    const result = await dispatch(login(userData));
+    if(result){
+      alert.success("Loged in SuccessFully");
+      navigate("/");
+    }else{
+      console.log("Error");
+      alert.error("Error Occurred");
+    }
   };
+
+  useEffect(() => {
+    if (error) {
+      console.log(error);
+    }
+    if(isAuthenticated){
+      navigate("/");
+      alert.error("Already loged In");
+    }
+  }, [loading,isAuthenticated,dispatch,navigate,error]);
 
   return (
         <>
-          <div className="w-full h-screen text-white flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="w-full h-screen text-white flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
             <div
             style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
             className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute top-0 left-0 z-0"
@@ -87,6 +115,8 @@ const Login = () => {
               </div>
             </div>
           </div>
+          </>
+        )}   
         </>
   );
 };

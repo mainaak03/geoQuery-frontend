@@ -1,10 +1,17 @@
 import ellipse from "../assets/images/ellipse.svg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import {useDispatch} from 'react-redux';
+import {logout} from "../actions/userAction";
+import {useAlert} from "react-alert";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const alert = useAlert();
   const token = localStorage.getItem("token");
+
+
   return (
     <>
       <nav
@@ -41,20 +48,23 @@ const Navbar = () => {
             </li>
             <li>
               {token ? (
+                
+                <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center"
+                onClick={() => {
+                  localStorage.removeItem("token");
+                  dispatch(logout());
+                  alert.success("Logged Out Successfully");
+                  navigate("/");
+                }}
+              >
+                <div className="text-center">
+                  <Link to="/">Logout</Link>
+                </div>
+              </button>
+              ):(
                 <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
                   <div className="text-center">
                     <Link to="/login">Get Started</Link>
-                  </div>
-                </button>
-              ):(
-                <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center"
-                  onClick={() => {
-                    localStorage.removeItem("token");
-                    navigate("/");
-                  }}
-                >
-                  <div className="text-center">
-                    <Link to="/">Logout</Link>
                   </div>
                 </button>
               )}

@@ -1,6 +1,12 @@
 import ellipse from "../assets/images/ellipse.svg";
 import { Link } from "react-router-dom";
+import {useEffect} from "react";
 import { MdSend } from "react-icons/md";
+import axios from "axios";
+import {loadUser} from "../actions/userAction";
+import {useDispatch,useSelector} from "react-redux";
+import {useAlert} from "react-alert";
+
 const queries = [
   "How much rainfall in the Amazon ..?",
   "How much rainfall in the Amazon ..?",
@@ -9,7 +15,21 @@ const queries = [
   "How much rainfall in the Amazon ..?",
   "How much rainfall in the Amazon ..?",
 ];
+
 const query = () => {
+
+  const alert = useAlert();
+  const dispatch = useDispatch();
+
+  let token = localStorage.getItem("token");
+
+
+  if(token){
+    token = "Bearer " + token
+    dispatch(loadUser(token));
+  }
+
+  
   return (
     <div className="w-full h-screen text-white flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
       <div
