@@ -2,17 +2,32 @@ import ellipse from "../assets/images/ellipse.svg";
 import { Link } from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {useState} from "react";
+import {login} from "../actions/userAction";
 
 
 const Login = () => {
 
   const dispatch = useDispatch();
-  const [loginUserName, setLoginUserName] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  
+  const [user, setUser] = useState({
+    username : "",
+    password : "",
+  });
+
+  const { username, password } = user;
+
+  const loginDataChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  }
 
   const loginSubmit = (e) => {
     e.preventDefault();
     // here the dispatch code to be added
+    const userData = {
+      username: username,
+      password: password,
+    };
+    dispatch(login(userData));
   };
 
   return (
@@ -40,16 +55,18 @@ const Login = () => {
                         <label htmlFor="username">Username</label>
                         <input id="username" type="text" className="block w-full p-3 mt-1 rounded-lg bg-Primary bg-opacity-20" 
                           required
-                          value={loginUserName}
-                          onChange={(e) => setLoginUserName(e.target.value)}
+                          name="username"
+                          value={username}
+                          onChange={loginDataChange}
                         />
                       </div>
                       <div className="mx-4 p-4 font-light z-10">
                         <label htmlFor="password">Password</label>
                         <input id="password" type="password" className="block w-full p-3 mt-1 rounded-lg bg-Primary bg-opacity-20" 
                           required
-                          value={loginPassword}
-                          onChange={(e) => setLoginPassword(e.target.value)} 
+                          name="password"
+                          value={password}
+                          onChange={loginDataChange} 
                         />
                       </div>
                       <div className="flex p-4 justify-center items-center">

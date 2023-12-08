@@ -5,3 +5,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const REGISTER_USER_REQUEST = "REGISTER_USER_REQUEST";
 export const REGISTER_USER_SUCCESS = "REGISTER_USER_SUCCESS";
 export const REGISTER_USER_FAIL = "REGISTER_USER_FAIL";
+
+export const NODE_URI = "http://localhost:6969"

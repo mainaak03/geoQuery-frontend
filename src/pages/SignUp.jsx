@@ -9,9 +9,9 @@ const Signup = () => {
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
-    firstName : "",
-    lastName : "",
-    userName : "",
+    first_name : "",
+    last_name : "",
+    username : "",
     password : "",
   });
 
@@ -24,8 +24,9 @@ const Signup = () => {
   const registerSubmit = async (e) => {
 
     const userData = {
+      first_name : firstName,
+      last_name : lastName,
       username: userName,
-      email: "aniket777984@gmail.com",
       password: password,
     };
     dispatch(register(userData));

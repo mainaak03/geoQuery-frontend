@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
   return (
     <>
       <nav
@@ -39,11 +40,24 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
-                <div className="text-center">
-                  <Link to="/login">Get Started</Link>
-                </div>
-              </button>
+              {token ? (
+                <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
+                  <div className="text-center">
+                    <Link to="/login">Get Started</Link>
+                  </div>
+                </button>
+              ):(
+                <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    navigate("/");
+                  }}
+                >
+                  <div className="text-center">
+                    <Link to="/">Logout</Link>
+                  </div>
+                </button>
+              )}
             </li>
           </ul>
         </div>
