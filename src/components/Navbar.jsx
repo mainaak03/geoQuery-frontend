@@ -40,7 +40,7 @@ const Navbar = () => {
               <div
                 className="text-Primary hover:text-gray-300 text-2xl font-outfit cursor-pointer"
                 onClick={() => {
-                  navigate("/aboutus");
+                  navigate("/query");
                 }}
               >
                 About Us

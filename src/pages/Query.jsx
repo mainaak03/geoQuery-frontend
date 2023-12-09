@@ -1,37 +1,48 @@
 import ellipse from "../assets/images/ellipse.svg";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import {useEffect} from "react";
 import { MdSend } from "react-icons/md";
-import axios from "axios";
-import {loadUser} from "../actions/userAction";
+import {getAllQueries} from "../actions/queryAction";
 import {useDispatch,useSelector} from "react-redux";
 import {useAlert} from "react-alert";
+import Loader from "../components/Loader";
 
-const queries = [
-  "How much rainfall in the Amazon ..?",
-  "How much rainfall in the Amazon ..?",
-  "How much rainfall in the Amazon ..?",
-  "How much rainfall in the Amazon ..?",
-  "How much rainfall in the Amazon ..?",
-  "How much rainfall in the Amazon ..?",
-];
 
 const query = () => {
 
-  const alert = useAlert();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const alert = useAlert();
+  const {loading,user} = useSelector((state) => state.user);
+  const {queries,loading : QueryLoading} = useSelector((state) => state.queries);
 
-  let token = localStorage.getItem("token");
+  useEffect(() => {
+    if(loading == false && user == null){
+        alert.error("Login First to Acess");
+        navigate("/login");
+    }
+    if(user){
+      alert.success("User Loaded");
+    }
+  }, []);
 
-
-  if(token){
-    token = "Bearer " + token
-    dispatch(loadUser(token));
-  }
+  useEffect(()=>{
+    let token = localStorage.getItem("token");
+    if(token){
+      token = "Bearer " + token
+    }
+    dispatch(getAllQueries(token)); 
+  },[dispatch]);
 
   
   return (
-    <div className="w-full h-screen text-white flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
+
+    <>
+    {loading && QueryLoading ? (
+      <Loader />
+    ) : (
+      <>
+        <div className="w-full h-screen text-white flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
       <div
         style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
         className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute top-0 left-0 z-0"
@@ -50,7 +61,7 @@ const query = () => {
           </div>
           <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
             <div className="text-center">
-              <Link to="/profile">My Profile</Link>
+              <Link to="/">{user && user.username}</Link>
             </div>
           </button>
         </div>
@@ -92,7 +103,7 @@ const query = () => {
                 Recent Queries
               </div>
               <div className="flex flex-col flex-grow justify-center items-center space-y-4 overflow-auto pt-4">
-                {queries.map((query, index) => (
+                {queries && queries.map((q, index) => (
                   // eslint-disable-next-line react/jsx-key
                   <div className="flex-shrink-0 w-11/12 h-max font-normal">
                     <div
@@ -104,7 +115,7 @@ const query = () => {
                         background: "rgba(255, 255, 255, 0.03)",
                       }}
                     >
-                      {query}
+                      {q.query}
                     </div>
                   </div>
                 ))}
@@ -134,6 +145,9 @@ const query = () => {
         </div>
       </div>
     </div>
+      </>
+    )}
+    </>
   );
 };
 

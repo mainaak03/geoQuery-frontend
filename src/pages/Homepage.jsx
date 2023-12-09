@@ -2,6 +2,7 @@
 import Navbar from "../components/Navbar";
 import hero from "../assets/images/hero1.svg";
 import { PiSealCheckFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const Homepage = () => {
   return (
@@ -42,8 +43,9 @@ const Homepage = () => {
               <img src={hero} alt="Hero" className="h-full w-full" />
             </div>
           </div>
-          <div
+          <Link
             // style={{ width: "935px", height: "72px" }}
+            to = "/query"
             className="flex justify-between items-center w-3/5 px-12 py-6 rounded-lg bg-white bg-opacity-5"
           >
             <div className="flex items-center text-xl space-x-4 text-Primary">
@@ -58,7 +60,7 @@ const Homepage = () => {
               <PiSealCheckFill />
               <span>Precise Locations</span>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </>

@@ -3,7 +3,7 @@ import {REGISTER_USER_REQUEST,REGISTER_USER_SUCCESS,REGISTER_USER_FAIL,LOGIN_REQ
 ,LOAD_USER_REQUEST,LOAD_USER_SUCCESS,LOAD_USER_FAIL} from "../constants/userConstant";
 
 const initialState = {
-    user : {},
+    user : null,
     loading : false,
     isAuthenticated :false,
     registerSuccess : false,
@@ -56,5 +56,6 @@ export const userReducer = createReducer(initialState,{
         state.loading = false;
         state.user = null;
         state.error = action.payload;
+        state.isAuthenticated = false;
     }
 });

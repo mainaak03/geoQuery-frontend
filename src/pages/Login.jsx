@@ -2,7 +2,7 @@ import ellipse from "../assets/images/ellipse.svg";
 import { Link,useNavigate } from "react-router-dom";
 import {useDispatch,useSelector} from "react-redux";
 import {useState,useEffect} from "react";
-import {login} from "../actions/userAction";
+import {login,loadUser} from "../actions/userAction";
 import Loader from "../components/Loader";
 import {useAlert} from "react-alert";
 
@@ -16,7 +16,7 @@ const Login = () => {
   const {loading,error,isAuthenticated} = useSelector(
     (state) => state.user
   );
-  
+
   const [user, setUser] = useState({
     username : "",
     password : "",
@@ -37,6 +37,11 @@ const Login = () => {
     const result = await dispatch(login(userData));
     if(result){
       alert.success("Loged in SuccessFully");
+      let token = localStorage.getItem("token");
+      if(token){
+        token = "Bearer " + token
+      }
+      dispatch(loadUser(token));
       navigate("/");
     }else{
       console.log("Error");
@@ -46,10 +51,10 @@ const Login = () => {
 
   useEffect(() => {
     if (error) {
-      console.log(error);
+      
     }
     if(isAuthenticated){
-      navigate("/");
+      navigate("/query");
       alert.error("Already loged In");
     }
   }, [loading,isAuthenticated,dispatch,navigate,error]);
