@@ -1,8 +1,8 @@
 import ellipse from "../assets/images/ellipse.svg";
 import { Link,useNavigate } from "react-router-dom";
-import {useEffect} from "react";
+import {useEffect,useState} from "react";
 import { MdSend } from "react-icons/md";
-import {getAllQueries} from "../actions/queryAction";
+import {getAllQueries,createNewQuery} from "../actions/queryAction";
 import {useDispatch,useSelector} from "react-redux";
 import {useAlert} from "react-alert";
 import Loader from "../components/Loader";
@@ -15,6 +15,9 @@ const query = () => {
   const alert = useAlert();
   const {loading,user} = useSelector((state) => state.user);
   const {queries,loading : QueryLoading} = useSelector((state) => state.queries);
+  const {query : newQuery,response,loading : newQueryLoading} = useSelector((state) => state.newQuery);
+
+  const [processquery, setprocessquery] = useState("");
 
   useEffect(() => {
     if(loading == false && user == null){
@@ -33,6 +36,20 @@ const query = () => {
     }
     dispatch(getAllQueries(token)); 
   },[dispatch]);
+
+
+
+  const createQuery = async (e) => {
+    const queryData = {
+      query : processquery,
+    };
+    let token = localStorage.getItem("token");
+    if(token){
+      token = "Bearer " + token
+    }
+    await dispatch(createNewQuery(queryData,token));
+    dispatch(getAllQueries(token));
+  };
 
   
   return (
@@ -113,6 +130,10 @@ const query = () => {
                         borderRadius: "5px",
                         border: "2px solid rgba(54, 32, 255, 0.25)",
                         background: "rgba(255, 255, 255, 0.03)",
+                        cursor : "pointer"
+                      }}
+                      onClick={()=>{
+                        setprocessquery(q.query);
                       }}
                     >
                       {q.query}
@@ -135,10 +156,33 @@ const query = () => {
                   style={{
                     background: "rgba(217, 217, 217, 0.15)",
                   }}
+                  required
+                  value={processquery}
+                  onChange={(e) => setprocessquery(e.target.value)}
                 />
-                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl ">
+                <button className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl "
+                  onClick={createQuery}
+                >
                   <MdSend />
                 </button>
+              </div>
+              <div>
+                {newQueryLoading ? (
+                  <>
+                    <div>
+                      <p>Loading.....  Please wait</p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div>
+                      <br />
+                      <p>{response && response.flair_loc_tokens.toString()}</p>
+                      <br />
+                      {/* <p>{response && Object.entries(response.fuzzy_sdx).toString()}</p> */}
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>
