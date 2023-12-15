@@ -6,6 +6,7 @@ import Query from "./pages/Query";
 import How from "./pages/Howitworks";
 import About from "./pages/AboutUs";
 import AdminPanel from "./pages/AdminPanel";
+import Admin from "./pages/Admin";
 import {useEffect} from "react";
 import {loadUser} from "./actions/userAction";
 import store from "./store";
