@@ -5,10 +5,12 @@ import SignUp from "./pages/SignUp";
 import Query from "./pages/Query";
 import How from "./pages/Howitworks";
 import About from "./pages/AboutUs";
+import AdminPanel from "./pages/AdminPanel";
 import {useEffect} from "react";
 import {loadUser} from "./actions/userAction";
 import store from "./store";
 import {useSelector} from "react-redux";
+import UserOption from "./components/User";
 
 function App() {
 
@@ -25,6 +27,7 @@ function App() {
 
   return (
     <>
+      {isAuthenticated && <UserOption user={user} />}
       <Routes>
         <Route path="/" exact element={<Homepage />} />
         <Route path="/login" exact element={<Login />} />
@@ -32,6 +35,7 @@ function App() {
         <Route path="/howitworks" exact element={<How />} />
         <Route path="/aboutus" exact element={<About />} />
         <Route path="/query" exact element={<Query />} />
+        <Route path="/admin/panel" exact element={<AdminPanel useroption={user} />} />
       </Routes>
     </>
   )

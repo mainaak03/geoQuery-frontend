@@ -23,3 +23,16 @@
     }
   }
   
+
+  .instantLink{
+    position: fixed;
+    right: 2vmax;
+    bottom: 2vmax;
+  }
+  
+  .instantLinkIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: 100%;
+  }
+  

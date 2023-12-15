@@ -177,9 +177,8 @@ const query = () => {
                   <>
                     <div>
                       <br />
-                      <p>{response && response.flair_loc_tokens.toString()}</p>
+                      <p>{response && response.loc_tokens.toString()}</p>
                       <br />
-                      {/* <p>{response && Object.entries(response.fuzzy_sdx).toString()}</p> */}
                     </div>
                   </>
                 )}
