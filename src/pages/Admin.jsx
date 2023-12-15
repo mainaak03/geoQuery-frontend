@@ -35,7 +35,7 @@ const AdminPanel = ({useroption}) => {
           style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
           className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute bottom-0 right-0 z-0"
         ></div>
-        <div className="flex flex-grow items-start justify-center min-h-screen p-6 mt-16">
+        <div className="flex flex-grow items-center justify-center min-h-screen p-6">
           <div className="flex flex-col justify-start items-center z-10 space-y-4">
             <div className="text-Primary text-3xl md:text-4xl font-outfit font-bold py-2">
               Admin
