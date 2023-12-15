@@ -18,6 +18,14 @@ const query = () => {
   const {query : newQuery,response,loading : newQueryLoading} = useSelector((state) => state.newQuery);
 
   const [processquery, setprocessquery] = useState("");
+  const [responseKeys, setResponseKeys] = useState([]);
+
+  useEffect(()=>{
+    if(response){
+      const keys = Object.keys(response.fuzzy_matches);
+      setResponseKeys(keys);
+    }
+  },[response,dispatch])
 
   useEffect(() => {
     if(loading == false && user == null){
@@ -78,7 +86,7 @@ const query = () => {
           </div>
           <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
             <div className="text-center">
-              <Link to="/">{user && user.username}</Link>
+              {user && user.username}
             </div>
           </button>
         </div>
@@ -176,9 +184,23 @@ const query = () => {
                 ) : (
                   <>
                     <div>
-                      <br />
-                      <p>{response && response.loc_tokens.toString()}</p>
-                      <br />
+                      {response && <h3 className="my-2.5">Location tokens through flair :------</h3>}
+                      {response && response.loc_tokens.map((token,idx)=> (
+                        <div key={idx}>
+                          <p>{token[0]} -- location</p>
+                        </div>
+                      ))}
+                      {response && <h3 className="my-2.5">Nearest match of location tokens :-------</h3>}
+                      {response && responseKeys && responseKeys.map((key,idx)=> (
+                        <div key={idx}>
+                          <h5 className="my-2">Nearest Match of {key} :-- </h5>
+                          {response && response.fuzzy_matches[key] && response.fuzzy_matches[key].map((token,i)=> (
+                              <div key={i}>
+                                <p>{token[0]} , {token[1]}</p>
+                              </div>
+                          ))}
+                        </div>
+                      ))}
                     </div>
                   </>
                 )}

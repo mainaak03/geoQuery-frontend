@@ -3,29 +3,81 @@ import {useState,useEffect} from "react";
 import {useDispatch,useSelector} from "react-redux";
 import {useAlert} from "react-alert";
 import {useNavigate} from "react-router-dom";
+import { createNewLocation,deleteLocation,updateLocation} from "../actions/locationAction";
+import Loader from "../components/Loader";
 
 
 const AdminPanel = ({useroption}) => {
 
   const navigate = useNavigate();
-  const {loading,user} = useSelector((state) => state.user);
   const alert = useAlert();
+  const dispatch = useDispatch();
+
+  const {loading} = useSelector((state) => state.location);
+
+  const [newLocation, setNewLocation] = useState("");
+  const [oldLocation, setOldLocation] = useState("");
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
-      if(user && useroption.admin){
-          console.log("admin " + useroption.admin);
+      if(useroption && useroption.admin){
           alert.success("Have Access privilege");
       }
       else{
-          console.log("admin " + useroption.admin);
           alert.error("Not an admin");
           navigate("/login");
       }
   }, []);
 
+  const createLocation = async (e) => {
+    const locData = {
+      loc : newLocation,
+    };
+    let token = localStorage.getItem("token");
+    if(token){
+      token = "Bearer " + token
+    }
+    const res = await dispatch(createNewLocation(locData,token));
+    if(res) alert.success("New Location Added");
+    else alert.error("Error Occurred");
+  };
+
+  const updateOldToNewLoc = async (e) => {
+    const locData = {
+      old_loc : oldLocation,
+      new_loc : newLocation,
+    };
+    let token = localStorage.getItem("token");
+    if(token){
+      token = "Bearer " + token
+    }
+    const res = await dispatch(updateLocation(locData,token));
+    if(res) alert.success("Location Updated");
+    else alert.error("Error Occurred");
+  };
+
+  const deleteLoc = async (e) => {
+    const locData = {
+      loc : location
+    };
+    let token = localStorage.getItem("token");
+    if(token){
+      token = "Bearer " + token
+    }
+    const res = await dispatch(deleteLocation(locData,token));
+    if(res) alert.success("Location Updated");
+    else alert.error("Error Occurred");
+  };
+
     const [selectedOption, setSelectedOption] = useState('');
     return (
-      <div className="flex flex-grow items-start justify-center bg-Background min-h-screen relative overflow-hidden">
+      <>
+      {
+        loading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="flex flex-grow items-start justify-center bg-Background min-h-screen relative overflow-hidden">
         <Navbar />
         <div
           style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
@@ -56,8 +108,13 @@ const AdminPanel = ({useroption}) => {
                   className="border-2 border-gray-300 p-2 rounded-md text-center"
                   type="text"
                   placeholder="Enter location for Create"
+                  required
+                  value={newLocation}
+                  onChange={(e) => setNewLocation(e.target.value)}
                 />
-                <button className="p-2 bg-onPrimary text-white rounded-md hover:opacity-80 transition duration-200">
+                <button className="p-2 bg-onPrimary text-white rounded-md hover:opacity-80 transition duration-200"
+                  onClick={createLocation}  
+                >
                   Create
                 </button>
               </div>
@@ -68,8 +125,13 @@ const AdminPanel = ({useroption}) => {
                   className="border-2 border-gray-300 p-2 rounded-md text-center"
                   type="text"
                   placeholder="Enter location for Delete"
+                  required
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
                 />
-                <button className="p-2 bg-onPrimary text-white rounded-md hover:opacity-80 transition duration-200">
+                <button className="p-2 bg-onPrimary text-white rounded-md hover:opacity-80 transition duration-200"
+                  onClick={deleteLoc}
+                >
                   Delete
                 </button>
               </div>
@@ -80,13 +142,21 @@ const AdminPanel = ({useroption}) => {
                   className="border-2 border-gray-300 p-2 rounded-md text-center"
                   type="text"
                   placeholder="Enter old location"
+                  required
+                  value={oldLocation}
+                  onChange={(e) => setOldLocation(e.target.value)}
                 />
                 <input
                   className="border-2 border-gray-300 p-2 rounded-md text-center"
                   type="text"
                   placeholder="Enter new location"
+                  required
+                  value={newLocation}
+                  onChange={(e) => setNewLocation(e.target.value)}
                 />
-                <button className="p-2 bg-onPrimary text-white rounded-md hover:opacity-80 transition duration-200">
+                <button className="p-2 bg-onPrimary text-white rounded-md hover:opacity-80 transition duration-200"
+                  onClick={updateOldToNewLoc}
+                >
                   Update
                 </button>
               </div>
@@ -94,6 +164,10 @@ const AdminPanel = ({useroption}) => {
           </div>
         </div>
       </div>
+          </>
+        )
+      }
+      </>
     );
 }
 

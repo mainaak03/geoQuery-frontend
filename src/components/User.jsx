@@ -11,6 +11,8 @@ import {useDispatch} from "react-redux";
 import "./Loader.css";
 import {useNavigate,Link} from "react-router-dom";
 import {logout} from "../actions/userAction";
+import { MdSend } from "react-icons/md";
+import profile from "../assets/images/profile.jpg";
 
 const UserOption = ({user}) => {
 
@@ -21,15 +23,20 @@ const UserOption = ({user}) => {
 
   const options = [
     { icon: <HomeIcon />, name: "Home", func: home },
+    { icon: <MdSend />, name: "Query", func: createQuery },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
   if (user.admin) {
     options.unshift({
       icon: <DashboardIcon />,
-      name: "Dashboard",
+      name: "Admin",
       func: dashboard,
     });
+  }
+
+  function createQuery(){
+    navigate("/query");
   }
 
   function home(){
@@ -37,7 +44,7 @@ const UserOption = ({user}) => {
   }
 
   function dashboard() {
-    navigate("/admin/panel");
+    navigate("/admin");
   }
   function logoutUser() {
     localStorage.removeItem("token");
@@ -60,7 +67,7 @@ const UserOption = ({user}) => {
         icon={
           <img
             className="instantLinkIcon"
-            src={"/Profile.png"}
+            src={profile}
             alt="Profile"
           />
         }

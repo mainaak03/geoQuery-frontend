@@ -35,7 +35,7 @@ function App() {
         <Route path="/howitworks" exact element={<How />} />
         <Route path="/aboutus" exact element={<About />} />
         <Route path="/query" exact element={<Query />} />
-        <Route path="/admin/panel" exact element={<AdminPanel useroption={user} />} />
+        <Route path="/admin" exact element={<AdminPanel useroption={user} />} />
       </Routes>
     </>
   )
