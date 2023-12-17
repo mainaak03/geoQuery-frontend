@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const Timeline = ({ details }) => {
 
@@ -14,22 +14,21 @@ const Timeline = ({ details }) => {
   const handleTabClick = (details) => {
     setActiveTab(details.tab);
     setActiveDetail(details.content);
-    setCurrent(details.tab.substring(5)-1);
+    setCurrent(details.tab.substring(5) - 1);
   };
 
   const handlePrev = () => {
     var prevIndex = current - 1;
     if (prevIndex >= 0) {
       handleTabClick(details[prevIndex]);
-    }
-    else{
-      prevIndex = details.length-1;
+    } else {
+      prevIndex = details.length - 1;
       handleTabClick(details[prevIndex]);
     }
   };
 
   const handleNext = () => {
-    const nextIndex = (current + 1)%details.length;
+    const nextIndex = (current + 1) % details.length;
     if (nextIndex < details.length) {
       handleTabClick(details[nextIndex]);
     }
@@ -78,19 +77,21 @@ const Timeline = ({ details }) => {
                 style={{
                   paddingBottom: "10px",
                   borderBottom:
-                    activeTab === detail.tab? "2px solid white" : "2px solid transparent",
+                    activeTab === detail.tab
+                      ? "2px solid white"
+                      : "2px solid transparent",
                 }}
                 onClick={() => handleTabClick(detail)}
-              >
-              </div>
+              ></div>
             )}
           </div>
         ))}
-        <button onClick={handleNext}>
-          &#11162;
-        </button>
+        <button onClick={handleNext}>&#11162;</button>
       </div>
-      <div className="mt-20" style={{textAlign: "center"}}>
+      <div
+        className="mt-20 p-2 rounded-10 mx-auto w-2/3"
+        style={{ textAlign: "center", background: "rgba(217, 217, 217, 0.15)" }}
+      >
         {activeDetail}
       </div>
     </div>

@@ -1,0 +1,36 @@
+.parah{
+    opacity: 0; 
+    transform: translateX(-100%);
+    transition: opacity 0.5s, transform 3s;
+}
+
+.slide-in {
+    opacity: 1; 
+    transform: translateX(0); 
+}
+
+.headi{
+    opacity: 0; 
+    transform: translateY(-100%);
+    transition: opacity 0.5s, transform 3s;
+}
+
+.slide-down {
+    opacity: 1; 
+    transform: translateY(0); 
+}
+
+.ufo{
+    animation: bounce 2s ease-in-out 0s 1.5 normal none;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-5%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}

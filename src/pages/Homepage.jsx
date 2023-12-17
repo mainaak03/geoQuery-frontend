@@ -1,10 +1,18 @@
-// import react from "react";
+import {useEffect, useRef} from "react";
 import Navbar from "../components/Navbar";
 import hero from "../assets/images/hero1.svg";
 import { PiSealCheckFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import "../App.css";
 
 const Homepage = () => {
+  const divRef = useRef(null);
+  const divRef2 = useRef(null);
+
+  useEffect(() => {
+    divRef.current.classList.add('slide-in');
+    divRef2.current.classList.add('slide-down');
+  }, []);
   return (
     <>
       <div className="flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
@@ -22,13 +30,15 @@ const Homepage = () => {
             <div className="flex flex-col justify-between items-center w-1/2">
               <div
                 style={{ width: "460px", height: "209px", flexShrink: "0" }}
-                className="font-outfit font-semibold text-5xl leading-tight text-Primary"
+                ref={divRef2}
+                className="headi font-outfit font-semibold text-5xl leading-tight text-Primary"
               >
                 Simplifying location identification and geospatial queries.
               </div>
               <div
                 style={{ width: "456px", height: "100px", flexShrink: "0" }}
-                className="font-outfit font-light text-Primary mt-6 text-lg"
+                ref={divRef}
+                className="parah font-outfit font-light text-Primary mt-6 text-lg"
               >
                 An application that simplifies your geospatial queries by
                 recognising locations with precision and speed. Backed by
@@ -40,7 +50,7 @@ const Homepage = () => {
               style={{ width: "650px", height: "488px", flexShrink: "0" }}
               className="flex-shrink-0 w-1/2"
             >
-              <img src={hero} alt="Hero" className="h-full w-full" />
+              <img src={hero} alt="Hero" className="ufo h-full w-full" />
             </div>
           </div>
           <div
