@@ -8,7 +8,7 @@ import {useAlert} from "react-alert";
 import Loader from "../components/Loader";
 
 
-const query = () => {
+const Query = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -216,4 +216,4 @@ const query = () => {
   );
 };
 
-export default query;
+export default Query;
