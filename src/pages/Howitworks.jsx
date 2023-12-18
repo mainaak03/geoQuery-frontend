@@ -4,7 +4,7 @@ import Timeline from "./Timeline";
 const How = () => {
 
   const details = [
-    { tab: 'Step 1', content: 'content for step1' },
+    { tab: 'Step 1', content: 'Content for step1' },
     { tab: 'Step 2', content: 'Content for step2' },
     { tab: 'Step 3', content: 'Content for step3' },
   ];
@@ -28,8 +28,13 @@ const How = () => {
                     </div>
                     <div 
                     className="text-white mx-auto w-1/2 text-2xl mt-5 font-light justify-center hidden sm:flex border border-solid border-teal-200 rounded-lg p-8" >
-                        Welcome Aboard! Effortlessly recognize locations in your queries, whether it is an address, landmark, or coordinates. GeoQuery interprets natural language, making it the smartest choice for all your geospatial queries.
+                        Welcome Aboard! Effortlessly recognize locations in your queries, whether it is an address or landmark. GeoQuery interprets natural language, making it the smartest choice for all your geospatial queries.
                     </div>
+                    <hr className="mt-8 h-3 w-2/3 mx-auto opacity-20"></hr>
+                    <div className="text-white text-2xl font-bold justify-center hidden sm:flex p-3">
+                        The Internal Working
+                    </div>
+                    <hr className="w-1/4 mx-auto opacity-10"></hr>
                     <div className="text-white text-2xl font-bold mt-10 justify-center hidden sm:flex">
                         <Timeline details={details}/>
                     </div>
