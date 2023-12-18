@@ -1,22 +1,23 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import hero from "../assets/images/hero1.svg";
 import { PiSealCheckFill } from "react-icons/pi";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../App.css";
 
 const Homepage = () => {
   const divRef = useRef(null);
   const divRef2 = useRef(null);
+  const [hover, setHover] = useState(false);
 
   useEffect(() => {
-    divRef.current.classList.add('slide-in');
-    divRef2.current.classList.add('slide-down');
+    divRef.current.classList.add("slide-in");
+    divRef2.current.classList.add("slide-down");
   }, []);
   return (
     <>
       <div className="flex flex-grow items-center justify-center bg-Background min-h-screen relative overflow-hidden">
-        <Navbar />
+        <Navbar hover={hover}/>
         <div
           style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
           className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute top-0 left-0 z-0"
@@ -55,6 +56,9 @@ const Homepage = () => {
           </div>
           <div
             // style={{ width: "935px", height: "72px" }}
+            //on hover syntax
+            onMouseEnter={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
             className="flex justify-between items-center w-3/5 px-12 py-6 rounded-lg bg-white bg-opacity-5"
           >
             <div className="flex items-center text-xl space-x-4 text-Primary">
