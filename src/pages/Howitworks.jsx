@@ -27,8 +27,8 @@ const How = () => {
                         How Does It Work?
                     </div>
                     <div 
-                    className="text-white mx-auto w-1/2 text-2xl mt-5 font-light justify-center hidden sm:flex border border-solid border-teal-200 rounded-lg p-8" >
-                        Welcome Aboard! Effortlessly recognize locations in your queries, whether it is an address or landmark. GeoQuery interprets natural language, making it the smartest choice for all your geospatial queries.
+                    className="text-white mx-auto w-1/2 text-2xl mt-5 font-light justify-center hidden sm:flex border border-solid border-onPrimary border-opacity-50 rounded-lg p-8 z-50" >
+                        Welcome Aboard! Effortlessly recognize locations in your queries, whether it is an address, landmark, or coordinates. GeoQuery interprets natural language, making it the smartest choice for all your geospatial queries.
                     </div>
                     <hr className="mt-8 h-3 w-2/3 mx-auto opacity-20"></hr>
                     <div className="text-white text-2xl font-bold justify-center hidden sm:flex p-3">
