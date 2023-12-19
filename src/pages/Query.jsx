@@ -62,6 +62,7 @@ const query = () => {
 
 
   const createQuery = async (e) => {
+    e.preventDefault();
     const queryData = {
       query : processquery,
     };
@@ -178,21 +179,23 @@ const query = () => {
                       Enter your query:
                     </div>
                     <div className="relative w-full mt-4">
-                      <input
-                        className="w-full p-2 rounded-10"
-                        style={{
-                          background: "rgba(217, 217, 217, 0.15)",
-                        }}
-                        required
-                        value={processquery}
-                        onChange={(e) => setprocessquery(e.target.value)}
-                      />
-                      <button
-                        className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl "
-                        onClick={createQuery}
-                      >
-                        <MdSend />
-                      </button>
+                      <form onSubmit={createQuery}>
+                        <input
+                          className="w-full p-2 rounded-10"
+                          style={{
+                            background: "rgba(217, 217, 217, 0.15)",
+                          }}
+                          required
+                          value={processquery}
+                          onChange={(e) => setprocessquery(e.target.value)}
+                        />
+                        <button
+                          className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl "
+                          type="submit"
+                        >
+                          <MdSend />
+                        </button>
+                      </form>
                     </div>
                     <div>
                       {newQueryLoading ? (
@@ -205,11 +208,9 @@ const query = () => {
                         <>
                           {response && (
                             <div className="grid grid-cols-3 py-4 text-xl border-b-2 border-Primary border-opacity-40">
-                        
                               <h3 className="">Token</h3>
                               <h3>Entity Type</h3>
                               <h3>Fuzzymatch/Category</h3>
-                          
                             </div>
                           )}
                           {response &&
