@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 import {DataGrid} from "@material-ui/data-grid";
 
 
-const Query = () => {
+const query = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -59,7 +59,6 @@ const Query = () => {
        clearInterval(funRef.current);
       };
   },[]);
-
 
 
   const createQuery = async (e) => {
@@ -231,4 +230,4 @@ const Query = () => {
   );
 };
 
-export default Query;
+export default query;
