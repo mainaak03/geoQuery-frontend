@@ -45,7 +45,7 @@ const Navbar = ({ hover }) => {
               <div
                 className="text-Primary hover:text-gray-300 text-2xl font-outfit cursor-pointer"
                 onClick={() => {
-                  navigate("/query");
+                  navigate("/aboutus");
                 }}
               >
                 About Us
@@ -67,14 +67,15 @@ const Navbar = ({ hover }) => {
                   </div>
                 </button>
               ) : (
-                <button className={`bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center ${hover ? 'button-pulse' : ''}`}
-                // style={{
-                //   border: hover === true ? "2px solid #FFFFFF" : "",
-                // }}
+                <button
+                  className={`bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center bp ${
+                    hover ? "button-pulse" : ""
+                  }`}
+                  style={{
+                    border: hover === true ? "2px solid #FFFFFF" : "",
+                  }}
                 >
-                  <div
-                    className="text-center"
-                  >
+                  <div className="text-center">
                     <Link to="/login">Get Started</Link>
                   </div>
                 </button>
