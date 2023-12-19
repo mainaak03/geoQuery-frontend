@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {All_QUERY_REQUEST,All_QUERY_FAIL,All_QUERY_SUCCESS,NEW_QUERY_REQUEST,NEW_QUERY_SUCCESS,NEW_QUERY_FAIL,
-STATUS_REQUEST,STATUS_SUCCESS,STATUS_FAIL} from "../constants/queryConstant";
+STATUS_REQUEST,STATUS_SUCCESS,STATUS_FAIL, CLEAR_RESPONSE} from "../constants/queryConstant";
 
 export const getAllQueries = (token) => async (dispatch) => {
     try {
@@ -66,3 +66,6 @@ export const getStatus = () => async (dispatch) => {
   }
 };
 
+export const clearResponse = () => async (dispatch) => {
+  dispatch({type : CLEAR_RESPONSE});
+}

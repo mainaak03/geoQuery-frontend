@@ -2,7 +2,7 @@ import ellipse from "../assets/images/ellipse.svg";
 import { Link,useNavigate} from "react-router-dom";
 import {useEffect,useState,useRef} from "react";
 import { MdSend } from "react-icons/md";
-import {getAllQueries,createNewQuery,getStatus} from "../actions/queryAction";
+import {getAllQueries,createNewQuery,getStatus,clearResponse} from "../actions/queryAction";
 import {useDispatch,useSelector} from "react-redux";
 import {useAlert} from "react-alert";
 import Loader from "../components/Loader";
@@ -160,6 +160,7 @@ const query = () => {
                               }}
                               onClick={() => {
                                 setprocessquery(q.query);
+                                dispatch(clearResponse());
                               }}
                             >
                               {q.query}
