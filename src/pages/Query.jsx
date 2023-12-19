@@ -145,7 +145,7 @@ const query = () => {
                     <div className="mt-8 px-4 text-xl font-normal pb-2">
                       Recent Queries
                     </div>
-                    <div className="flex flex-col flex-grow justify-center items-center space-y-4 overflow-auto pt-4">
+                    <div className="flex flex-col flex-grow justify-start items-center space-y-4 overflow-auto pt-4">
                       {queries &&
                         queries.map((q, index) => (
                           // eslint-disable-next-line react/jsx-key
