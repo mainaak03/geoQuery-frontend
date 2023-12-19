@@ -204,21 +204,20 @@ const query = () => {
                       ) : (
                         <>
                           {response && (
-                            <div className="grid grid-cols-5 pt-4 text-xl">
-                              <h3 className="">Index</h3>
-                              <h3 className="">Loc-Token</h3>
-                              <h3>Type</h3>
-                              <h3>Fuzzymatch</h3>
-                              <h3>Category</h3>
+                            <div className="grid grid-cols-3 py-4 text-xl border-b-2 border-Primary border-opacity-40">
+                        
+                              <h3 className="">Token</h3>
+                              <h3>Entity Type</h3>
+                              <h3>Fuzzymatch/Category</h3>
+                          
                             </div>
                           )}
                           {response &&
                             response.loc_tokens.map((token, idx) => (
                               <div
                                 key={idx}
-                                className="grid grid-cols-5 mt-2 text-xl"
+                                className="grid grid-cols-3 mt-2 text-xl font-light"
                               >
-                                <span>{idx + 1}.</span>
                                 <span>{token[0]}</span>
                                 <span>LOC</span>
                                 <span>
@@ -227,7 +226,7 @@ const query = () => {
                                       (match, i) =>
                                         i < 3 && (
                                           <p key={i}>
-                                            {match[0]} ({match[1]}),
+                                            {match[0]} ({match[1]}),/Cat
                                           </p>
                                         )
                                     )}
