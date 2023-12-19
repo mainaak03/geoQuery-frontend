@@ -1,16 +1,16 @@
 import ellipse from "../assets/images/ellipse.svg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {useDispatch} from 'react-redux';
-import {logout} from "../actions/userAction";
-import {useAlert} from "react-alert";
+import { useDispatch } from "react-redux";
+import { logout } from "../actions/userAction";
+import { useAlert } from "react-alert";
+import "../App.css";
 
-const Navbar = () => {
+const Navbar = ({ hover }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const alert = useAlert();
   const token = localStorage.getItem("token");
-
 
   return (
     <>
@@ -21,7 +21,12 @@ const Navbar = () => {
         <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:px-8 lg:px-16">
           <div className="flex items-center space-x-6">
             <img src={ellipse} alt="ellipse" className="w-10 h-10" />
-            <div className="text-Primary text-3xl md:text-4xl font-outfit font-bold cursor-pointer" onClick={()=>{navigate("/");}}>
+            <div
+              className="text-Primary text-3xl md:text-4xl font-outfit font-bold cursor-pointer"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
               GeoQuery
             </div>
           </div>
@@ -48,22 +53,28 @@ const Navbar = () => {
             </li>
             <li>
               {token ? (
-                
-                <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center"
-                onClick={() => {
-                  localStorage.removeItem("token");
-                  dispatch(logout());
-                  alert.success("Logged Out Successfully");
-                  navigate("/");
-                }}
-              >
-                <div className="text-center">
-                  <Link to="/">Logout</Link>
-                </div>
-              </button>
-              ):(
-                <button className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center">
+                <button
+                  className="bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center"
+                  onClick={() => {
+                    localStorage.removeItem("token");
+                    dispatch(logout());
+                    alert.success("Logged Out Successfully");
+                    navigate("/");
+                  }}
+                >
                   <div className="text-center">
+                    <Link to="/">Logout</Link>
+                  </div>
+                </button>
+              ) : (
+                <button className={`bg-onPrimary hover:opacity-80 text-Primary text-xl h-11 w-36 rounded-lg font-outfit flex items-center justify-center ${hover ? 'button-pulse' : ''}`}
+                // style={{
+                //   border: hover === true ? "2px solid #FFFFFF" : "",
+                // }}
+                >
+                  <div
+                    className="text-center"
+                  >
                     <Link to="/login">Get Started</Link>
                   </div>
                 </button>

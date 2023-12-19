@@ -9,7 +9,7 @@ import Loader from "../components/Loader";
 import {DataGrid} from "@material-ui/data-grid";
 
 
-const query = () => {
+const Query = () => {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -231,4 +231,4 @@ const query = () => {
   );
 };
 
-export default query;
+export default Query;
