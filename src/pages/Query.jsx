@@ -226,9 +226,9 @@ const query = () => {
                                     response.fuzzy_matches[token[0]].map(
                                       (match, i) =>
                                         i < 3 && (
-                                          <span key={i}>
+                                          <p key={i}>
                                             {match[0]} ({match[1]}),
-                                          </span>
+                                          </p>
                                         )
                                     )}
                                 </span>
