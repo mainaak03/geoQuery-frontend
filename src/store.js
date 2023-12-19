@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import { userReducer } from "./reducers/userReducer";
-import {queryReducer,newQueryReducer} from "./reducers/queryReducer";
+import {queryReducer,newQueryReducer, statusReducer} from "./reducers/queryReducer";
 import {locReducer} from "./reducers/locationReducer";
 
 const store = configureStore({
@@ -9,6 +9,7 @@ const store = configureStore({
         queries : queryReducer,
         newQuery : newQueryReducer,
         location : locReducer,
+        status : statusReducer,
     },
 });
 
