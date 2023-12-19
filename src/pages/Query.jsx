@@ -144,7 +144,7 @@ const query = () => {
                     <div className="mt-8 px-4 text-xl font-normal pb-2">
                       Recent Queries
                     </div>
-                    <div className="flex flex-col flex-grow justify-center items-center space-y-4 overflow-auto pt-4">
+                    <div className="flex flex-col flex-grow justify-start items-center space-y-4 overflow-auto pt-4">
                       {queries &&
                         queries.map((q, index) => (
                           // eslint-disable-next-line react/jsx-key
@@ -214,19 +214,20 @@ const query = () => {
                           )}
                           {response &&
                             response.loc_tokens.map((token, idx) => (
+                              token[1] == "LOC" &&
                               <div
                                 key={idx}
                                 className="grid grid-cols-3 mt-2 text-xl font-light"
                               >
                                 <span>{token[0]}</span>
-                                <span>LOC</span>
+                                <span>{token[1]}</span>
                                 <span>
                                   {response.fuzzy_matches[token[0]] &&
                                     response.fuzzy_matches[token[0]].map(
                                       (match, i) =>
                                         i < 3 && (
                                           <p key={i}>
-                                            {match[0]} ({match[1]}),/Cat
+                                            {match[0]} ({match[1]})/{match[2]}
                                           </p>
                                         )
                                     )}
