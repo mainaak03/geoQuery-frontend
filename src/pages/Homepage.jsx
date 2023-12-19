@@ -26,7 +26,7 @@ const Homepage = () => {
           style={{ width: "1125px", height: "433px", filter: "blur(155px)" }}
           className="flex-shrink-0 rounded-[1125px] bg-custom-blue absolute bottom-0 right-0 z-0"
         ></div>
-        <div className="flex flex-col justify-center items-center z-10">
+        <div className="flex flex-col justify-center items-center">
           <div className="flex flex-row justify-revert items-center w-full z-10 p-8 mt-16">
             <div className="flex flex-col justify-between items-center w-1/2">
               <div
