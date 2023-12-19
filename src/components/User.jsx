@@ -23,8 +23,7 @@ const UserOption = ({user}) => {
 
   const options = [
     { icon: <HomeIcon />, name: "Home", func: home },
-    { icon: <MdSend />, name: "Query", func: createQuery },
-    { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
+    { icon: <MdSend />, name: "Query", func: createQuery }
   ];
 
   if (user.admin) {
@@ -45,12 +44,6 @@ const UserOption = ({user}) => {
 
   function dashboard() {
     navigate("/admin");
-  }
-  function logoutUser() {
-    localStorage.removeItem("token");
-    dispatch(logout());
-    alert.success("Logged Out Successfully");
-    navigate("/");
   }
 
   return (
