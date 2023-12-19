@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {All_QUERY_REQUEST,All_QUERY_FAIL,All_QUERY_SUCCESS,NEW_QUERY_REQUEST,NEW_QUERY_SUCCESS,NEW_QUERY_FAIL} from "../constants/queryConstant";
+import {All_QUERY_REQUEST,All_QUERY_FAIL,All_QUERY_SUCCESS,NEW_QUERY_REQUEST,NEW_QUERY_SUCCESS,NEW_QUERY_FAIL,
+STATUS_REQUEST,STATUS_SUCCESS,STATUS_FAIL} from "../constants/queryConstant";
 
 export const getAllQueries = (token) => async (dispatch) => {
     try {
@@ -43,3 +44,25 @@ export const createNewQuery = (queryData,token) => async (dispatch) => {
     });
   }
 };
+
+export const getStatus = () => async (dispatch) => {
+  try {
+    dispatch({ type: STATUS_REQUEST });
+
+
+    const { data } = await axios.get(
+      "api/usage"
+    );
+
+    dispatch({
+      type: STATUS_SUCCESS,
+      payload: data.usage,
+    });
+  } catch (error) {
+    dispatch({
+      type: STATUS_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+

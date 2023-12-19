@@ -1,11 +1,12 @@
 import ellipse from "../assets/images/ellipse.svg";
-import { Link,useNavigate } from "react-router-dom";
-import {useEffect,useState} from "react";
+import { Link,useNavigate} from "react-router-dom";
+import {useEffect,useState,useRef} from "react";
 import { MdSend } from "react-icons/md";
-import {getAllQueries,createNewQuery} from "../actions/queryAction";
+import {getAllQueries,createNewQuery,getStatus} from "../actions/queryAction";
 import {useDispatch,useSelector} from "react-redux";
 import {useAlert} from "react-alert";
 import Loader from "../components/Loader";
+import {DataGrid} from "@material-ui/data-grid";
 
 
 const query = () => {
@@ -16,6 +17,9 @@ const query = () => {
   const {loading,user} = useSelector((state) => state.user);
   const {queries,loading : QueryLoading} = useSelector((state) => state.queries);
   const {query : newQuery,response,loading : newQueryLoading} = useSelector((state) => state.newQuery);
+  const {usage} = useSelector((state) => state.status);
+
+  const funRef = useRef(null);
 
   const [processquery, setprocessquery] = useState("");
   const [responseKeys, setResponseKeys] = useState([]);
@@ -42,8 +46,19 @@ const query = () => {
     if(token){
       token = "Bearer " + token
     }
-    dispatch(getAllQueries(token)); 
+    dispatch(getAllQueries(token));
+    dispatch(getStatus());
   },[dispatch]);
+
+  useEffect(()=>{
+      funRef.current = setInterval(() => {
+        dispatch(getStatus());
+      }, 10000);
+      // to clear the interval
+      return () => {
+       clearInterval(funRef.current);
+      };
+  },[]);
 
 
 
@@ -117,7 +132,7 @@ const query = () => {
                     <span>Status:</span>
                     <span>Running</span>
                     <span>Load:</span>
-                    <span>43%</span>
+                    <span>{usage && usage.toFixed(2)} %</span>
                     <span>Waiting Time:</span>
                     <span>5s</span>
                   </div>

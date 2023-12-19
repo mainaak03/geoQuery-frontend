@@ -5,3 +5,8 @@ export const All_QUERY_FAIL = "All_QUERY_FAIL";
 export const NEW_QUERY_REQUEST = "NEW_QUERY_REQUEST";
 export const NEW_QUERY_SUCCESS = "NEW_QUERY_SUCCESS";
 export const NEW_QUERY_FAIL = "NEW_QUERY_FAIL";
+
+
+export const STATUS_REQUEST = "STATUS_REQUEST";
+export const STATUS_SUCCESS = "STATUS_SUCCESS";
+export const STATUS_FAIL = "STATUS_FAIL";
