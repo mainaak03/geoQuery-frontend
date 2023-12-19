@@ -32,14 +32,14 @@ const Homepage = () => {
               <div
                 style={{ width: "460px", height: "209px", flexShrink: "0" }}
                 ref={divRef2}
-                className="headi font-outfit font-semibold text-5xl leading-tight text-Primary"
+                className="font-outfit font-semibold text-5xl leading-tight text-Primary"
               >
                 Simplifying location identification and geospatial queries.
               </div>
               <div
                 style={{ width: "456px", height: "100px", flexShrink: "0" }}
                 ref={divRef}
-                className="parah font-outfit font-light text-Primary mt-6 text-lg"
+                className="font-outfit font-light text-Primary mt-6 text-lg"
               >
                 An application that simplifies your geospatial queries by
                 recognising locations with precision and speed. Backed by
