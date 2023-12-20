@@ -56,7 +56,7 @@ const Timeline = ({ details }) => {
 
   return (
     <div>
-      <div style={{ display: "flex",alignItems: "center" }}>
+      <div style={{ display: "flex",alignItems: "center" }} className="mx-auto justify-center">
         <button onClick={handlePrev}>
           &#11160;
         </button>
@@ -89,8 +89,8 @@ const Timeline = ({ details }) => {
         <button onClick={handleNext}>&#11162;</button>
       </div>
       <div
-        className="mt-20 p-2 rounded-10 mx-auto w-2/3"
-        style={{ textAlign: "center", background: "rgba(217, 217, 217, 0.15)" }}
+        className="text-white text-xl font-medium justify-center hidden sm:flex bg-gray-400 rounded-md backdrop-filter backdrop-blur-sm bg-opacity-5 border border-gray-100 border-opacity-20 p-5 mt-10 mx-auto w-1/2"
+        
       >
         {activeDetail}
       </div>
