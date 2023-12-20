@@ -50,15 +50,15 @@ const query = () => {
     dispatch(getStatus());
   },[dispatch]);
 
-  // useEffect(()=>{
-  //     funRef.current = setInterval(() => {
-  //       dispatch(getStatus());
-  //     }, 10000);
-  //     // to clear the interval
-  //     return () => {
-  //      clearInterval(funRef.current);
-  //     };
-  // },[]);
+  useEffect(()=>{
+      funRef.current = setInterval(() => {
+        dispatch(getStatus());
+      }, 10000);
+      // to clear the interval
+      return () => {
+       clearInterval(funRef.current);
+      };
+  },[]);
 
 
   const createQuery = async (e) => {
