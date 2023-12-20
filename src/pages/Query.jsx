@@ -62,6 +62,7 @@ const query = () => {
 
 
   const createQuery = async (e) => {
+    e.preventDefault();
     const queryData = {
       query : processquery,
     };
@@ -144,7 +145,7 @@ const query = () => {
                     <div className="mt-8 px-4 text-xl font-normal pb-2">
                       Recent Queries
                     </div>
-                    <div className="flex flex-col flex-grow justify-center items-center space-y-4 overflow-auto pt-4">
+                    <div className="flex flex-col flex-grow justify-start items-center space-y-4 overflow-auto pt-4">
                       {queries &&
                         queries.map((q, index) => (
                           // eslint-disable-next-line react/jsx-key
@@ -178,21 +179,23 @@ const query = () => {
                       Enter your query:
                     </div>
                     <div className="relative w-full mt-4">
-                      <input
-                        className="w-full p-2 rounded-10"
-                        style={{
-                          background: "rgba(217, 217, 217, 0.15)",
-                        }}
-                        required
-                        value={processquery}
-                        onChange={(e) => setprocessquery(e.target.value)}
-                      />
-                      <button
-                        className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl "
-                        onClick={createQuery}
-                      >
-                        <MdSend />
-                      </button>
+                      <form onSubmit={createQuery}>
+                        <input
+                          className="w-full p-2 rounded-10"
+                          style={{
+                            background: "rgba(217, 217, 217, 0.15)",
+                          }}
+                          required
+                          value={processquery}
+                          onChange={(e) => setprocessquery(e.target.value)}
+                        />
+                        <button
+                          className="absolute top-1/2 right-2 transform -translate-y-1/2 text-xl "
+                          type="submit"
+                        >
+                          <MdSend />
+                        </button>
+                      </form>
                     </div>
                     <div>
                       {newQueryLoading ? (
@@ -204,31 +207,29 @@ const query = () => {
                       ) : (
                         <>
                           {response && (
-                            <div className="grid grid-cols-5 pt-4 text-xl">
-                              <h3 className="">Index</h3>
-                              <h3 className="">Loc-Token</h3>
-                              <h3>Type</h3>
-                              <h3>Fuzzymatch</h3>
-                              <h3>Category</h3>
+                            <div className="grid grid-cols-3 py-4 text-xl border-b-2 border-Primary border-opacity-40">
+                              <h3 className="">Token</h3>
+                              <h3>Entity Type</h3>
+                              <h3>Fuzzymatch/Category</h3>
                             </div>
                           )}
                           {response &&
                             response.loc_tokens.map((token, idx) => (
+                              token[1] == "LOC" &&
                               <div
                                 key={idx}
-                                className="grid grid-cols-5 mt-2 text-xl"
+                                className="grid grid-cols-3 mt-2 text-xl font-light"
                               >
-                                <span>{idx + 1}.</span>
                                 <span>{token[0]}</span>
-                                <span>LOC</span>
+                                <span>{token[1]}</span>
                                 <span>
                                   {response.fuzzy_matches[token[0]] &&
                                     response.fuzzy_matches[token[0]].map(
                                       (match, i) =>
                                         i < 3 && (
-                                          <span key={i}>
-                                            {match[0]} ({match[1]}),
-                                          </span>
+                                          <p key={i}>
+                                            {match[0]} ({match[1]})/{match[2]}
+                                          </p>
                                         )
                                     )}
                                 </span>
