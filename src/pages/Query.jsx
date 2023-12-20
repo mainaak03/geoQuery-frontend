@@ -24,12 +24,12 @@ const query = () => {
   const [processquery, setprocessquery] = useState("");
   const [responseKeys, setResponseKeys] = useState([]);
 
-  useEffect(()=>{
-    if(response){
-      const keys = Object.keys(response.fuzzy_matches);
-      setResponseKeys(keys);
-    }
-  },[response,dispatch])
+  // useEffect(()=>{
+  //   if(response){
+  //     const keys = Object.keys(response.fuzzy_matches);
+  //     setResponseKeys(keys);
+  //   }
+  // },[response,dispatch])
 
   useEffect(() => {
     if(loading == false && user == null){
@@ -50,15 +50,15 @@ const query = () => {
     dispatch(getStatus());
   },[dispatch]);
 
-  useEffect(()=>{
-      funRef.current = setInterval(() => {
-        dispatch(getStatus());
-      }, 10000);
-      // to clear the interval
-      return () => {
-       clearInterval(funRef.current);
-      };
-  },[]);
+  // useEffect(()=>{
+  //     funRef.current = setInterval(() => {
+  //       dispatch(getStatus());
+  //     }, 10000);
+  //     // to clear the interval
+  //     return () => {
+  //      clearInterval(funRef.current);
+  //     };
+  // },[]);
 
 
   const createQuery = async (e) => {
@@ -206,6 +206,7 @@ const query = () => {
                         </>
                       ) : (
                         <>
+                          <div className="mt-4 border w-full p-2">Primary Model</div>
                           {response && (
                             <div className="grid grid-cols-3 py-4 text-xl border-b-2 border-Primary border-opacity-40">
                               <h3 className="">Token</h3>
@@ -214,7 +215,7 @@ const query = () => {
                             </div>
                           )}
                           {response &&
-                            response.loc_tokens.map((token, idx) => (
+                            response.model_1_loc.map((token, idx) => (
                               token[1] == "LOC" &&
                               <div
                                 key={idx}
@@ -223,8 +224,38 @@ const query = () => {
                                 <span>{token[0]}</span>
                                 <span>{token[1]}</span>
                                 <span>
-                                  {response.fuzzy_matches[token[0]] &&
-                                    response.fuzzy_matches[token[0]].map(
+                                  {response.fuzzy_matches_1[token[0]] &&
+                                    response.fuzzy_matches_1[token[0]].map(
+                                      (match, i) =>
+                                        i < 3 && (
+                                          <p key={i}>
+                                            {match[0]} ({match[1]})/{match[2]}
+                                          </p>
+                                        )
+                                    )}
+                                </span>
+                              </div>
+                            ))}
+                            <div className="mt-4 border w-full p-2">Secondary Model</div>
+                            {response && (
+                            <div className="grid grid-cols-3 py-4 text-xl border-b-2 border-Primary border-opacity-40">
+                              <h3 className="">Token</h3>
+                              <h3>Entity Type</h3>
+                              <h3>Fuzzymatch/Category</h3>
+                            </div>
+                            )}
+                            {response &&
+                            response.model_2_loc.map((token, idx) => (
+                              token[1] == "LOC" &&
+                              <div
+                                key={idx}
+                                className="grid grid-cols-3 mt-2 text-xl font-light"
+                              >
+                                <span>{token[0]}</span>
+                                <span>{token[1]}</span>
+                                <span>
+                                  {response.fuzzy_matches_2[token[0]] &&
+                                    response.fuzzy_matches_2[token[0]].map(
                                       (match, i) =>
                                         i < 3 && (
                                           <p key={i}>
